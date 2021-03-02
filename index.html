@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>Click the button to create an array with 10000 random words from 3 to 5 carachteres, then display how many of
+        them are Palindromes ones 😄.</p>
+    <button onclick="Palindrome()">Try it</button>
+
+    <p id="demo"></p>
+
+    <script>
+
+
+        function Palindrome() {
+            let words = [];
+            var numberOfPalins = 0;
+
+
+            for (let a = 0; a < 10000; a++) {
+                let length = 0;
+
+                length = randomIntFromInterval(3, 5);
+
+                let randomWord = '';
+                randomWord = randomWordGenerator(length);
+                words.push(randomWord);
+            }
+            for (let b = 0; b < words.length; b++) {
+                if (isPalindrome(words[b]) == true) {
+                    numberOfPalins = numberOfPalins + 1;
+                    console.log(numberOfPalins);
+                }
+            }
+            document.getElementById("demo").innerHTML = numberOfPalins;
+        }
+
+        function randomIntFromInterval(min, max) { // min and max included 
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+
+        function randomWordGenerator(length) {
+            let chars = 'abcdefghijklmnopqrstuvwxyz';    // Declare all characters
+
+            let str = '';
+            for (let i = 0; i < length; i++) {
+                str += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+
+            return str;
+        }
+
+        function isPalindrome(str) {
+
+            let cleanStr = str;
+
+            for (let i = 0; i < cleanStr.length / 2; i++) {
+                if (cleanStr[i] != cleanStr[cleanStr.length - 1 - i]) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+    </script>
+</body>
+
+</html>
